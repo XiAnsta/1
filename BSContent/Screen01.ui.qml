@@ -4,6 +4,7 @@ import BS
 
 Rectangle {
     id: root
+    property QtObject backend
     width: Constants.width   // 1920
     height: Constants.height // 1080
     color: "#EDF0F3"
@@ -157,12 +158,12 @@ Rectangle {
                     color: "#E8F5E9"; border.color: cAccent; border.width: 1
                     Row {
                         anchors.left: parent.left; anchors.leftMargin: 10; anchors.verticalCenter: parent.verticalCenter; spacing: 8
-                        Rectangle { width: 12; height: 12; radius: 6; color: cAccent
+                        Rectangle { width: 12; height: 12; radius: 6; color: backend && backend.isConnected ? cAccent : cBorder
                             Rectangle { anchors.centerIn: parent; width: 18; height: 18; radius: 9; color: "transparent"; border.color: cAccent; border.width: 1; opacity: 0.5 }
                         }
                         Column { spacing: 1
-                            Text { text: "设备已连接"; font.pixelSize: f10; font.bold: true; color: cGreen }
-                            Text { text: "192.168.1.100  |  信号 -68 dBm"; font.pixelSize: f8; color: "#4CAF50"; font.family: "Consolas" }
+                            Text { text: backend && backend.isConnected ? "设备已连接" : "未连接设备"; font.pixelSize: f10; font.bold: true; color: cGreen }
+                            Text { text: backend ? (backend.targetIp + "  |  信号 " + backend.signalStrength.toFixed(1) + " dBm") : ""; font.pixelSize: f8; color: "#4CAF50"; font.family: "Consolas" }
                         }
                     }
                 }
@@ -311,14 +312,14 @@ Rectangle {
                                     width: 80; height: 20; radius: 2; color: "#D5F5E3"; border.color: cAccent; border.width: 1
                                     Row { anchors.centerIn: parent; spacing: 4
                                         Rectangle { width: 7; height: 7; radius: 4; color: cAccent; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "已连接"; font.pixelSize: f9; color: cGreen }
+                                        Text { text: backend && backend.isConnected ? "已连接" : "未连接"; font.pixelSize: f9; color: cGreen }
                                     }
                                 }
                             }
                             Row {
                                 anchors.right: parent.right; anchors.rightMargin: 8; anchors.verticalCenter: parent.verticalCenter; spacing: 6
                                 Text { text: "当前测点:"; font.pixelSize: f9; color: cTextLt }
-                                Text { text: "L01 — P004"; font.pixelSize: f10; font.bold: true; color: cOrange }
+                                Text { text: backend ? "L01 — " + backend.currentPoint : ""; font.pixelSize: f10; font.bold: true; color: cOrange }
                             }
                         }
 
@@ -346,7 +347,7 @@ Rectangle {
                                                 Row {
                                                     anchors.left: parent.left; anchors.leftMargin: 8; anchors.verticalCenter: parent.verticalCenter; spacing: 6
                                                     Text { text: "🌐"; font.pixelSize: f10 }
-                                                    Text { text: "192.168.1.100"; font.pixelSize: f11; color: cBlue; font.family: "Consolas"; font.bold: true }
+                                                    Text { text: backend ? backend.targetIp : ""; font.pixelSize: f11; color: cBlue; font.family: "Consolas"; font.bold: true }
                                                 }
                                             }
                                         }
@@ -375,8 +376,9 @@ Rectangle {
                                     // Connect buttons
                                     Row { spacing: 8
                                         Rectangle {
-                                            width: 90; height: 30; radius: 4; color: cBlue
-                                            Text { anchors.centerIn: parent; text: "🔌  连接"; font.pixelSize: f10; font.bold: true; color: "white" }
+                                            width: 90; height: 30; radius: 4; color: backend && backend.isConnected ? cTextLt : cBlue
+                                            MouseArea { anchors.fill: parent; onClicked: if(backend) backend.connectDevice() }
+                                            Text { anchors.centerIn: parent; text: backend && backend.isConnected ? "🔌  断开" : "🔌  连接"; font.pixelSize: f10; font.bold: true; color: "white" }
                                         }
                                         Rectangle {
                                             width: 90; height: 30; radius: 4; color: "#CFD8DC"; border.color: cBorder; border.width: 1
@@ -766,11 +768,11 @@ Rectangle {
                                 Column { spacing: 4
                                     Row { spacing: 8
                                         Text { text: "采集进度"; font.pixelSize: f9; font.bold: true; color: cText; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "P004  /  L01  (叠加 8/16)"; font.pixelSize: f9; color: cTextLt; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: backend ? backend.currentPoint + "  /  L01  (" + backend.progressPercent + "%)" : ""; font.pixelSize: f9; color: cTextLt; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                     Rectangle {
                                         width: 320; height: 10; radius: 5; color: "#C5CBD3"
-                                        Rectangle { width: parent.width * 0.5; height: parent.height; radius: 5; color: cAccent }
+                                        Rectangle { width: parent.width * (backend ? backend.progressPercent/100.0 : 0); height: parent.height; radius: 5; color: cAccent }
                                         Rectangle { x: parent.width*0.5 - 5; y:-3; width: 16; height: 16; radius: 8; color: cGreen; border.color: "white"; border.width: 2 }
                                     }
                                     Text { text: "  3 / 6 测点完成   |   预计剩余 04:12"; font.pixelSize: f9; font.family: "Consolas"; color: cTextLt }
@@ -778,11 +780,11 @@ Rectangle {
 
                                 // Big acquire button
                                 Rectangle {
-                                    width: 148; height: 52; radius: 6; color: cGreen
+                                    width: 148; height: 52; radius: 6; color: backend && backend.isAcquiring ? "#E65100" : cGreen
                                     border.color: "#1B5E20"; border.width: 2
                                     Rectangle { anchors.left: parent.left; anchors.right: parent.right; anchors.top: parent.top; anchors.leftMargin: 4; anchors.rightMargin: 4; anchors.topMargin: 3; height: 14; radius: 4; color: "#66BB6A"; opacity: 0.4 }
                                     Column { anchors.centerIn: parent; spacing: 2
-                                        Text { text: "▶  开始采集"; font.pixelSize: f12; font.bold: true; color: "white"; anchors.horizontalCenter: parent.horizontalCenter }
+                                        Text { text: backend && backend.isAcquiring ? "■  停止采集" : "▶  开始采集"; font.pixelSize: f12; font.bold: true; color: "white"; anchors.horizontalCenter: parent.horizontalCenter }
                                         Text { text: "Start Acquisition"; font.pixelSize: f8; color: "#C8E6C9"; anchors.horizontalCenter: parent.horizontalCenter }
                                     }
                                 }
@@ -797,6 +799,7 @@ Rectangle {
 
                                 Rectangle {
                                     width: 90; height: 52; radius: 5; color: "#E3F0FF"; border.color: cBlue; border.width: 1
+                                    MouseArea { anchors.fill: parent; onClicked: if(backend) backend.skipPoint() }
                                     Column { anchors.centerIn: parent; spacing: 2
                                         Text { text: "⏭  跳过"; font.pixelSize: f11; font.bold: true; color: cBlue; anchors.horizontalCenter: parent.horizontalCenter }
                                         Text { text: "Skip Point"; font.pixelSize: f8; color: "#5C9BD6"; anchors.horizontalCenter: parent.horizontalCenter }

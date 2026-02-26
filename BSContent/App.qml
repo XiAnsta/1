@@ -1,6 +1,3 @@
-// Copyright (C) 2021 The Qt Company Ltd.
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only
-
 import QtQuick 6.5
 import BS
 
@@ -9,11 +6,16 @@ Window {
     height: mainScreen.height
 
     visible: true
-    title: "BS"
+    title: "TEM Acquisition (Mock Data Mode)"
+
+    // Our pseudo C++ backend written in QML for QtDS design purposes
+    MockBackend { id: mockBackend }
 
     Screen01 {
         id: mainScreen
+
+        // Inject the backend property downwards. 
+        // In Screen01.ui.qml we will declare `property QtObject backend`
+        backend: mockBackend
     }
-
 }
-

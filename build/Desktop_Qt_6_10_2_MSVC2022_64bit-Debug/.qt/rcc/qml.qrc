@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="BSContent/App.qml">D:/QTproject/BS/BSContent/App.qml</file>
+    <file alias="BSContent/Screen01.ui.qml">D:/QTproject/BS/BSContent/Screen01.ui.qml</file>
+    <file alias="qtquickcontrols2.conf">D:/QTproject/BS/qtquickcontrols2.conf</file>
+  </qresource>
+</RCC>
+
