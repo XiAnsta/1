@@ -20,7 +20,4 @@ QtObject {
     readonly property color backgroundColor: "#EAEAEA"
 
 
-    property StudioApplication application: StudioApplication {
-        fontPath: Qt.resolvedUrl("../../BSContent/" + relativeFontDirectory)
-    }
 }
