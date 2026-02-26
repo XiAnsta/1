@@ -3,6 +3,9 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <QDebug>
+#include <QDirIterator>
+
 int main(int argc, char *argv[]) {
   // Enable High DPI Support
   QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
@@ -13,6 +16,12 @@ int main(int argc, char *argv[]) {
   app.setApplicationName("TEM_Acquisition");
 
   QQmlApplicationEngine engine;
+
+  // Print all QRC resources
+  QDirIterator it(":", QDirIterator::Subdirectories);
+  while (it.hasNext()) {
+    qDebug() << it.next();
+  }
 
   // Instantiate our C++ backend
   Backend backend;
