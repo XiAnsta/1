@@ -25,6 +25,7 @@ qt_add_resources(TEM_Acquisition "qml"
     FILES
         "BSContent/App.qml"
         "BSContent/Screen01.ui.qml"
+        "BSContent/MockBackend.qml"
         "qtquickcontrols2.conf"
 )
 
