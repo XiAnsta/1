@@ -1,9 +1,20 @@
 #include "Backend.h"
+#include "DatabaseManager.h"
 #include <QDateTime>
+#include <QDebug>
+#include <QDir>
 #include <QRandomGenerator>
-
+#include <QStandardPaths>
 
 Backend::Backend(QObject *parent) : QObject(parent) {
+  // Initialize DB
+  QString dbPath =
+      QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) +
+      "/tem_data.db";
+  QDir().mkpath(
+      QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+  DatabaseManager::instance().initialize(dbPath);
+
   // Initialize with some default flat data
   for (int i = 0; i < 18; ++i) {
     m_recvWaveform.append(0.0);

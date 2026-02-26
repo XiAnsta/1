@@ -1,0 +1,6 @@
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/TEM_Acquisition.dir
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/TEM_Acquisition_qmlimportscan.dir
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/edit_cache.dir
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/TEM_Acquisition_autogen_timestamp_deps.dir
+D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/TEM_Acquisition_autogen.dir

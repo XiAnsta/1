@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="/">
+    <file alias="BS/Constants.qml">D:/QTproject/BS/BS/Constants.qml</file>
+    <file alias="BS/DirectoryFontLoader.qml">D:/QTproject/BS/BS/DirectoryFontLoader.qml</file>
+    <file alias="BS/EventListModel.qml">D:/QTproject/BS/BS/EventListModel.qml</file>
+    <file alias="BS/EventListSimulator.qml">D:/QTproject/BS/BS/EventListSimulator.qml</file>
+    <file alias="BS/qmldir">D:/QTproject/BS/BS/qmldir</file>
+    <file alias="BSContent/fonts/fonts.txt">D:/QTproject/BS/BSContent/fonts/fonts.txt</file>
+  </qresource>
+</RCC>
+

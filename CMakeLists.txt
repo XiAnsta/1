@@ -5,7 +5,7 @@ project(TEM_Acquisition VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml Sql)
 
 # Enable automatic processing of Qt macro instructions
 set(CMAKE_AUTOMOC ON)
@@ -17,6 +17,8 @@ qt_add_executable(TEM_Acquisition
     main.cpp
     Backend.h
     Backend.cpp
+    DatabaseManager.h
+    DatabaseManager.cpp
 )
 
 # QML files via QRC resource
@@ -43,5 +45,5 @@ qt_add_resources(TEM_Acquisition "designer_files"
 )
 
 target_link_libraries(TEM_Acquisition
-    PRIVATE Qt6::Quick Qt6::Gui Qt6::Qml
+    PRIVATE Qt6::Quick Qt6::Gui Qt6::Qml Qt6::Sql
 )
