@@ -3,7 +3,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-
 int main(int argc, char *argv[]) {
   // Enable High DPI Support
   QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
@@ -20,6 +19,9 @@ int main(int argc, char *argv[]) {
 
   // Inject backend into QML root context
   engine.rootContext()->setContextProperty("backend", &backend);
+
+  // Add QRC root to module import paths so it finds the "BS" module
+  engine.addImportPath("qrc:/");
 
   // Load the main view
   const QUrl url(QStringLiteral("qrc:/BSContent/App.qml"));
