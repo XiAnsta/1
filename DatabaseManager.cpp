@@ -4,7 +4,6 @@
 #include <QSqlError>
 #include <QSqlQuery>
 
-
 DatabaseManager &DatabaseManager::instance() {
   static DatabaseManager _instance;
   return _instance;
@@ -212,6 +211,46 @@ bool DatabaseManager::saveSample(int pointId, const QVariantMap &s,
 
   emit databaseError("Insert Sample failed: " + q.lastError().text());
   return false;
+}
+
+QVariantList DatabaseManager::getProjectTree() {
+  QVariantList tree;
+
+  // Fetch all lines
+  QSqlQuery qLine("SELECT ID, NAME FROM Data_Line", m_db);
+  while (qLine.next()) {
+    int lineId = qLine.value(0).toInt();
+    QString lineName = QString::number(qLine.value(1).toDouble(), 'f', 1);
+
+    QVariantMap lineNode;
+    lineNode["id"] = lineId;
+    lineNode["label"] = "L" + lineName;
+    lineNode["isLine"] = true;
+    lineNode["expanded"] = true;
+
+    // Fetch points for this line
+    QVariantList points;
+    QSqlQuery qPoint(m_db);
+    qPoint.prepare("SELECT ID, NAME FROM Data_Point WHERE Data_LineID = :lid");
+    qPoint.bindValue(":lid", lineId);
+    qPoint.exec();
+
+    while (qPoint.next()) {
+      int pointId = qPoint.value(0).toInt();
+      QString pointName = QString::number(qPoint.value(1).toDouble(), 'f', 1);
+
+      QVariantMap pointNode;
+      pointNode["id"] = pointId;
+      pointNode["label"] = "P" + pointName;
+      pointNode["isPoint"] = true;
+      points.append(pointNode);
+    }
+
+    lineNode["children"] = points;
+    tree.append(lineNode);
+  }
+
+  return tree;
 }
 
 QVariantList DatabaseManager::getUnsyncedSamples() {

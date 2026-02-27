@@ -1,0 +1,18 @@
+[
+    {
+        "ID": 1,
+        "NAME": 1.0,
+        "NOTE": null,
+        "TYPE": 0,
+        "USE": 1,
+        "list_Data_Point": null
+    },
+    {
+        "ID": 2,
+        "NAME": 2.0,
+        "NOTE": null,
+        "TYPE": 0,
+        "USE": 1,
+        "list_Data_Point": null
+    }
+]

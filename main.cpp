@@ -1,5 +1,6 @@
 #include "Backend.h"
-#include <QGuiApplication>
+#include "PlaybackBackend.h"
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
@@ -8,10 +9,10 @@
 
 int main(int argc, char *argv[]) {
   // Enable High DPI Support
-  QGuiApplication::setHighDpiScaleFactorRoundingPolicy(
+  QApplication::setHighDpiScaleFactorRoundingPolicy(
       Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
-  QGuiApplication app(argc, argv);
+  QApplication app(argc, argv);
   app.setOrganizationName("TEM Systems");
   app.setApplicationName("TEM_Acquisition");
 
@@ -23,11 +24,12 @@ int main(int argc, char *argv[]) {
     qDebug() << it.next();
   }
 
-  // Instantiate our C++ backend
   Backend backend;
 
+  qmlRegisterType<PlaybackBackend>("TEM.System", 1, 0, "PlaybackBackend");
+
   // Inject backend into QML root context
-  engine.rootContext()->setContextProperty("backend", &backend);
+  engine.rootContext()->setContextProperty("cppBackend", &backend);
 
   // Add QRC root to module import paths so it finds the "BS" module
   engine.addImportPath("qrc:/");

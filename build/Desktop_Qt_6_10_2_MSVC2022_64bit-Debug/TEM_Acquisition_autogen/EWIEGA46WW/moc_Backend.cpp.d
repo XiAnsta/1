@@ -17,6 +17,7 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/algorithm \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/array \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/atomic \
+  C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cassert \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/chrono \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/climits \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cmath \
@@ -25,6 +26,7 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstdint \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstdlib \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstring \
+  C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/filesystem \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/functional \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/initializer_list \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/iterator \
@@ -55,6 +57,21 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/version \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/yvals.h \
   C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/yvals_core.h \
+  D:/QTproject/BS/TcpClient.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QAbstractAxis \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QAbstractSeries \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QChartGlobal \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QXYSeries \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qabstractaxis.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qabstractseries.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qchartglobal.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qtcharts-config.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qtchartsexports.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qxyseries.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/QFile \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonArray \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonDocument \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonObject \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/QList \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/QObject \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/QString \
@@ -63,6 +80,7 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/QVariantList \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/q17memory.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20functional.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20iterator.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20memory.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20type_traits.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20utility.h \
@@ -85,7 +103,11 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearrayalgorithms.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearraylist.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearrayview.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcalendar.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcborcommon.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcborvalue.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qchar.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcheckedint_impl.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcompare.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcompare_impl.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcomparehelpers.h \
@@ -98,10 +120,14 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcontiguouscache.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdarwinhelpers.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdatastream.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdatetime.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdeadlinetimer.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdebug.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qendian.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qeventloop.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qexceptionhandling.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfile.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfiledevice.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qflags.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfloat16.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qforeach.h \
@@ -112,14 +138,23 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qglobalstatic.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qhash.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qhashfunctions.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiodevice.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiodevicebase.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiterable.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiterator.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonarray.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsondocument.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonobject.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonparseerror.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonvalue.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlatin1stringview.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qline.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlist.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlocale.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlogging.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmalloc.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmap.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmargins.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmath.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmetacontainer.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmetatype.h \
@@ -132,8 +167,11 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qobjectdefs_impl.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qoverload.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qpair.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qpoint.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qprocessordetection.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qrect.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qrefcount.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qregularexpression.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qscopedpointer.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qscopeguard.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qset.h \
@@ -141,6 +179,8 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qshareddata_impl.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsharedpointer.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsharedpointer_impl.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsize.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qspan.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstdlibdetection.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstring.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstringalgorithms.h \
@@ -178,10 +218,41 @@ D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/TEM_Acquisition_aut
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtversionchecks.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtypeinfo.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtypes.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qurl.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qutf8stringview.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/quuid.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvariant.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvariantlist.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvarlengtharray.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qversiontagging.h \
   D:/Qt/6.10.2/msvc2022_64/include/QtCore/qxptype_traits.h \
-  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qyieldcpu.h
+  D:/Qt/6.10.2/msvc2022_64/include/QtCore/qyieldcpu.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/QBrush \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/QFont \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/QImage \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/QPen \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qbrush.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qcolor.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qfont.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qimage.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpaintdevice.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpen.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpixelformat.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpixmap.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpolygon.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qregion.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qrgb.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qrgba64.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtgui-config.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtguiexports.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtguiglobal.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtransform.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qwindowdefs.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtGui/qwindowdefs_win.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/QTcpSocket \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qabstractsocket.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qhostaddress.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtcpsocket.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetwork-config.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetworkexports.h \
+  D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetworkglobal.h

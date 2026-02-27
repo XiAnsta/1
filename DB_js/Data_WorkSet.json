@@ -1,0 +1,11 @@
+[
+    {
+        "ID": 1,
+        "RecvCoil_Gain": 11.0,
+        "RecvCoil_Size": 15.024,
+        "SendCoil_Len": 0.8862,
+        "SendCoil_Turns": 32.0,
+        "SendCoil_Width": 0.8862,
+        "WorkConfig": 0
+    }
+]

@@ -5,7 +5,7 @@ project(TEM_Acquisition VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml Sql)
+find_package(Qt6 6.5 REQUIRED COMPONENTS Quick Gui Qml Sql Network Widgets Charts)
 
 # Enable automatic processing of Qt macro instructions
 set(CMAKE_AUTOMOC ON)
@@ -19,6 +19,10 @@ qt_add_executable(TEM_Acquisition
     Backend.cpp
     DatabaseManager.h
     DatabaseManager.cpp
+    TcpClient.h
+    TcpClient.cpp
+    PlaybackBackend.h
+    PlaybackBackend.cpp
 )
 
 # QML files via QRC resource
@@ -27,6 +31,7 @@ qt_add_resources(TEM_Acquisition "qml"
     FILES
         "BSContent/App.qml"
         "BSContent/Screen01.ui.qml"
+        "BSContent/PlaybackWindow.qml"
         "BSContent/MockBackend.qml"
         "qtquickcontrols2.conf"
 )
@@ -45,5 +50,5 @@ qt_add_resources(TEM_Acquisition "designer_files"
 )
 
 target_link_libraries(TEM_Acquisition
-    PRIVATE Qt6::Quick Qt6::Gui Qt6::Qml Qt6::Sql
+    PRIVATE Qt6::Quick Qt6::Gui Qt6::Qml Qt6::Sql Qt6::Network Qt6::Widgets Qt6::Charts
 )

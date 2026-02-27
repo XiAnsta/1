@@ -1,10 +1,34 @@
 import QtQuick 6.5
 import QtQuick.Controls 6.5
+import QtCharts
 import BS
 
 Rectangle {
     id: root
     property QtObject backend
+    
+    // Data Judgment Properties
+    property bool isPointQualified: true
+    property string pointRemarkText: "地面干扰较低，波形正常"
+    
+    // Project Management Aliases
+    property alias btnNewProject: btnNewProjectMouseArea
+    property alias btnOpenProject: btnOpenProjectMouseArea
+    
+    // Connection & Acquisition
+    property alias btnConnectDevice: btnConnectDeviceMouseArea
+    property alias btnCopyParams: btnCopyParamsMouseArea
+    property alias inputPointId: inputPointId
+    property alias inputSendCurrent: inputSendCurrent
+    property alias inputSampleRate: inputSampleRate
+    property alias inputStackCount: inputStackCount
+    property alias inputSampleTime: inputSampleTime
+    property alias inputCustomParams: inputCustomParams
+    property alias btnAcquire: btnAcquireMouseArea
+    property alias btnStop: btnStopMouseArea
+    
+    signal openPlaybackWindow()
+    
     width: Constants.width   // 1920
     height: Constants.height // 1080
     color: "#EDF0F3"
@@ -91,6 +115,15 @@ Rectangle {
                     }
                     // active underline
                     Rectangle { visible: modelData.active; anchors.bottom: parent.bottom; anchors.left: parent.left; anchors.right: parent.right; height: 2; color: "#4A90D9" }
+                    
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            if (modelData.label === "数据回放") {
+                                root.openPlaybackWindow()
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -142,28 +175,80 @@ Rectangle {
                     }
                     Row {
                         anchors.right: parent.right; anchors.rightMargin: 8; anchors.verticalCenter: parent.verticalCenter; spacing: 4
-                        Repeater {
-                            model: ["新建", "打开"]
-                            Rectangle {
-                                width: 36; height: 22; radius: 3; color: "#2E4A6A"; border.color: "#4A90D9"; border.width: 1
-                                Text { anchors.centerIn: parent; text: modelData; font.pixelSize: f9; color: "#90CAF9" }
+                        Rectangle {
+                            width: 36; height: 22; radius: 3; color: "#2E4A6A"; border.color: "#4A90D9"; border.width: 1
+                            Text { anchors.centerIn: parent; text: "新建"; font.pixelSize: f9; color: "#90CAF9" }
+                            MouseArea {
+                                id: btnNewProjectMouseArea
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                            }
+                        }
+                        
+                        Rectangle {
+                            width: 36; height: 22; radius: 3; color: "#2E4A6A"; border.color: "#4A90D9"; border.width: 1
+                            Text { anchors.centerIn: parent; text: "打开"; font.pixelSize: f9; color: "#90CAF9" }
+                            MouseArea {
+                                id: btnOpenProjectMouseArea
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
                             }
                         }
                     }
                 }
 
-                // Connection status badge
+                // TCP Connection Configuration
                 Rectangle {
-                    width: parent.width; height: 40
-                    color: "#E8F5E9"; border.color: cAccent; border.width: 1
-                    Row {
-                        anchors.left: parent.left; anchors.leftMargin: 10; anchors.verticalCenter: parent.verticalCenter; spacing: 8
-                        Rectangle { width: 12; height: 12; radius: 6; color: backend && backend.isConnected ? cAccent : cBorder
-                            Rectangle { anchors.centerIn: parent; width: 18; height: 18; radius: 9; color: "transparent"; border.color: cAccent; border.width: 1; opacity: 0.5 }
+                    width: parent.width; height: 80
+                    color: "#F8FAFC"; border.color: cBorder; border.width: 1
+
+                    Column {
+                        anchors.fill: parent; anchors.margins: 10; spacing: 8
+
+                        // Status Line
+                        Row { spacing: 8
+                            Rectangle { 
+                                width: 12; height: 12; radius: 6; anchors.verticalCenter: parent.verticalCenter
+                                color: !backend ? cBorder : (backend.connectionState === 2 ? cGreen : (backend.connectionState === 1 ? cYellow : cRed))
+                            }
+                            Text { 
+                                text: !backend ? "未连接后端" : (backend.connectionState === 2 ? "TCP 已连接" : (backend.connectionState === 1 ? "正在连接..." : "TCP 未连接"))
+                                font.pixelSize: f10; font.bold: true
+                                color: !backend ? cTextLt : (backend.connectionState === 2 ? cGreen : (backend.connectionState === 1 ? cOrange : cText))
+                            }
                         }
-                        Column { spacing: 1
-                            Text { text: backend && backend.isConnected ? "设备已连接" : "未连接设备"; font.pixelSize: f10; font.bold: true; color: cGreen }
-                            Text { text: backend ? (backend.targetIp + "  |  信号 " + backend.signalStrength.toFixed(1) + " dBm") : ""; font.pixelSize: f8; color: "#4CAF50"; font.family: "Consolas" }
+
+                        // IP Input & Connect Button
+                        Row { spacing: 6
+                            Rectangle {
+                                width: 130; height: 26; color: "white"; border.color: "#CFD8DC"; border.width: 1; radius: 3
+                                TextInput {
+                                    id: ipInput
+                                    anchors.fill: parent; anchors.leftMargin: 6; anchors.rightMargin: 6
+                                    verticalAlignment: Text.AlignVCenter
+                                    font.pixelSize: f10; font.family: "Consolas"
+                                    text: backend ? backend.targetIp : "192.168.1.100"
+                                    color: cText
+                                    enabled: !backend || backend.connectionState === 0
+                                    onTextChanged: if(backend) backend.targetIp = text
+                                }
+                            }
+                            
+                            Rectangle {
+                                width: 70; height: 26; radius: 3
+                                color: !backend ? "#ECEFF1" : (backend.connectionState === 0 ? cBlue : cRed)
+                                
+                                Text { 
+                                    anchors.centerIn: parent
+                                    text: !backend ? "连 接" : (backend.connectionState === 0 ? "连 接" : "断 开")
+                                    font.pixelSize: f10; color: "white"; font.bold: true
+                                }
+                                MouseArea {
+                                    id: btnConnectDeviceMouseArea
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                }
+                            }
                         }
                     }
                 }
@@ -189,52 +274,54 @@ Rectangle {
                             anchors.left: parent.left; anchors.leftMargin: 8; anchors.verticalCenter: parent.verticalCenter; spacing: 4
                             Text { text: "▾"; font.pixelSize: f10; color: cTextLt }
                             Text { text: "📊"; font.pixelSize: f10 }
-                            Text { text: "TEM_项目_2026"; font.pixelSize: f10; font.bold: true; color: cText }
+                            Text { text: backend ? backend.currentProjectName : "未打开工程"; font.pixelSize: f10; font.bold: true; color: cText }
                         }
-                        Text { anchors.right: parent.right; anchors.rightMargin: 8; anchors.verticalCenter: parent.verticalCenter; text: "12线"; font.pixelSize: f8; color: cTextLt }
                     }
 
-                    // Survey lines + points
+                    // Dynamic Project Tree
                     Repeater {
-                        model: [
-                            { line: "L01  西区测线", pts: 6, depth: 1, open: true },
-                            { line: "L02  中区测线", pts: 8, depth: 1, open: false },
-                            { line: "L03  东区测线", pts: 6, depth: 1, open: false }
-                        ]
+                        model: backend ? backend.projectTreeModel : []
+                        
                         Column {
                             width: leftPanel.width
-                            // Line row
+                            
+                            // Line Node
                             Rectangle {
                                 width: leftPanel.width; height: 30
-                                color: index === 0 ? cBlueLt : (index%2===0 ? "#F0F3F6" : "#E8EBF0")
+                                color: index === 0 ? cBlueLt : (index % 2 === 0 ? "#F0F3F6" : "#E8EBF0")
                                 border.color: index === 0 ? "#90CAF9" : "transparent"; border.width: 1
+                                
                                 Row {
                                     anchors.left: parent.left; anchors.leftMargin: 20; anchors.verticalCenter: parent.verticalCenter; spacing: 4
-                                    Text { text: modelData.open ? "▾" : "▸"; font.pixelSize: f9; color: cTextLt }
+                                    Text { text: modelData.expanded ? "▾" : "▸"; font.pixelSize: f9; color: cTextLt }
                                     Text { text: "📏"; font.pixelSize: f9 }
-                                    Text { text: modelData.line; font.pixelSize: f10; color: index===0 ? cBlue : cText; font.bold: index===0 }
+                                    Text { text: modelData.label; font.pixelSize: f10; color: index === 0 ? cBlue : cText; font.bold: index === 0 }
                                 }
-                                Text { anchors.right: parent.right; anchors.rightMargin: 8; anchors.verticalCenter: parent.verticalCenter; text: modelData.pts + "点"; font.pixelSize: f8; color: cTextLt }
-                                Rectangle { visible: index===0; width: 3; height: parent.height; anchors.left: parent.left; color: cBlue }
+                                
+                                Text { 
+                                    anchors.right: parent.right; anchors.rightMargin: 8; anchors.verticalCenter: parent.verticalCenter
+                                    text: modelData.children ? modelData.children.length + "点" : "0点"
+                                    font.pixelSize: f8; color: cTextLt 
+                                }
+                                
+                                Rectangle { visible: index === 0; width: 3; height: parent.height; anchors.left: parent.left; color: cBlue }
                             }
-                            // Points under L01
+                            
+                            // Points under this Line
                             Column {
-                                visible: index === 0
+                                visible: modelData.expanded !== undefined ? modelData.expanded : false
                                 width: leftPanel.width
+                                
                                 Repeater {
-                                    model: [
-                                        { id: "P001", status: "done",    dist: "0m"   },
-                                        { id: "P002", status: "done",    dist: "20m"  },
-                                        { id: "P003", status: "done",    dist: "40m"  },
-                                        { id: "P004", status: "active",  dist: "60m"  },
-                                        { id: "P005", status: "pending", dist: "80m"  },
-                                        { id: "P006", status: "pending", dist: "100m" }
-                                    ]
+                                    model: modelData.children ? modelData.children : []
+                                    
                                     Rectangle {
                                         width: leftPanel.width; height: 26
-                                        color: modelData.status === "active" ? "#FFF8E1" : "transparent"
+                                        color: "transparent" // Can be logic based on currentPoint later
+                                        
                                         Row {
                                             anchors.left: parent.left; anchors.leftMargin: 36; anchors.verticalCenter: parent.verticalCenter; spacing: 5
+                                            
                                             Rectangle {
                                                 width: 8; height: 8; radius: 4; anchors.verticalCenter: parent.verticalCenter
                                                 color: modelData.status === "done" ? cAccent : modelData.status === "active" ? cYellow : cBorder
@@ -427,40 +514,97 @@ Rectangle {
                                         Text { text: "采集参数"; font.pixelSize: f10; font.bold: true; color: cText; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle {
                                             width: 110; height: 22; radius: 2; color: "#E3F0FF"; border.color: cBlue; border.width: 1
+                                            MouseArea { id: btnCopyParamsMouseArea; anchors.fill: parent }
                                             Text { anchors.centerIn: parent; text: "📋 复制上一测点"; font.pixelSize: f9; color: cBlue }
                                         }
                                     }
 
-                                    // Parameter grid (2-column)
+                                    // Parameter grid (Custom Layout)
                                     Grid { columns: 2; spacing: 6; width: parent.width
-                                        Repeater {
-                                            model: [
-                                                { lbl:"发送电流",   val:"10.0",   unit:"A",  active:false },
-                                                { lbl:"采样频率",   val:"51200",  unit:"Hz", active:true  },
-                                                { lbl:"采集次数",   val:"16",     unit:"次", active:false },
-                                                { lbl:"采样时间",   val:"2048",   unit:"μs", active:false },
-                                                { lbl:"极距",       val:"50.0",   unit:"m",  active:false },
-                                                { lbl:"关断时间",   val:"500",    unit:"μs", active:false },
-                                                { lbl:"叠加次数",   val:"8",      unit:"次", active:false },
-                                                { lbl:"增益",       val:"×1",     unit:"",   active:false },
-                                                { lbl:"发射方向",   val:"X 轴",   unit:"",   active:false },
-                                                { lbl:"基距",       val:"200.0",  unit:"m",  active:false }
-                                            ]
-                                            Column { spacing: 2; width: 190
-                                                Text { text: modelData.lbl; font.pixelSize: f9; color: cTextLt }
-                                                Row { spacing: 4
-                                                    Rectangle {
-                                                        width: 110; height: 28; radius: 3
-                                                        color: "white"
-                                                        border.color: modelData.active ? cBlue : cBorder
-                                                        border.width: modelData.active ? 2 : 1
-                                                        Text {
-                                                            anchors.left: parent.left; anchors.leftMargin: 8; anchors.verticalCenter: parent.verticalCenter
-                                                            text: modelData.val; font.pixelSize: f11; font.family: "Consolas"
-                                                            color: modelData.active ? cBlue : cText; font.bold: modelData.active
-                                                        }
-                                                    }
-                                                    Text { text: modelData.unit; font.pixelSize: f10; color: cTextLt; anchors.verticalCenter: parent.verticalCenter; width: 22 }
+                                        // 1. Point ID
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "测点编号"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBlue; border.width: 1
+                                                TextInput {
+                                                    id: inputPointId
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.currentPoint : ""
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cBlue; font.bold: true
+                                                }
+                                            }
+                                        }
+                                        // 2. Send Current
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "发送电流 (A)"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBorder; border.width: 1
+                                                TextInput {
+                                                    id: inputSendCurrent
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.sendCurrent.toString() : "10.0"
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cText
+                                                    validator: DoubleValidator { bottom: 0; top: 100; decimals: 2 }
+                                                    onEditingFinished: { if(backend) backend.setSendCurrent(parseFloat(text)) }
+                                                }
+                                            }
+                                        }
+                                        // 3. Sample Rate
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "采样频率 (Hz)"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBorder; border.width: 1
+                                                TextInput {
+                                                    id: inputSampleRate
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.sampleRate.toString() : "51200"
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cText
+                                                    validator: IntValidator { bottom: 1; top: 1000000 }
+                                                    onEditingFinished: { if(backend) backend.setSampleRate(parseInt(text)) }
+                                                }
+                                            }
+                                        }
+                                        // 4. Stack Count
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "采集次数 (次)"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBorder; border.width: 1
+                                                TextInput {
+                                                    id: inputStackCount
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.stackCount.toString() : "16"
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cText
+                                                    validator: IntValidator { bottom: 1; top: 1000 }
+                                                    onEditingFinished: { if(backend) backend.setStackCount(parseInt(text)) }
+                                                }
+                                            }
+                                        }
+                                        // 5. Sample Time
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "采样时间 (μs)"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBorder; border.width: 1
+                                                TextInput {
+                                                    id: inputSampleTime
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.sampleTimeLength.toString() : "2048"
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cText
+                                                    validator: IntValidator { bottom: 1; top: 100000 }
+                                                    onEditingFinished: { if(backend) backend.setSampleTimeLength(parseInt(text)) }
+                                                }
+                                            }
+                                        }
+                                        // 6. Custom Params
+                                        Column { spacing: 2; width: 190
+                                            Text { text: "自定义参数"; font.pixelSize: f9; color: cTextLt }
+                                            Rectangle {
+                                                width: 110; height: 28; radius: 3; color: "white"; border.color: cBorder; border.width: 1
+                                                TextInput {
+                                                    id: inputCustomParams
+                                                    anchors.fill: parent; anchors.leftMargin: 8; verticalAlignment: TextInput.AlignVCenter
+                                                    text: backend ? backend.customParams : ""
+                                                    font.pixelSize: f11; font.family: "Consolas"; color: cText
+                                                    onEditingFinished: { if(backend) backend.setCustomParams(text) }
                                                 }
                                             }
                                         }
@@ -527,44 +671,19 @@ Rectangle {
                                                text: "mV / μs"; font.pixelSize: f8; color: "white"; opacity: 0.8 }
                                     }
 
-                                    Rectangle {
-                                        width: parent.width; height: parent.height - 24 - 26; color: "white"
-                                        Column {
-                                            anchors.left: parent.left; anchors.top: parent.top; anchors.leftMargin: 2
-                                            Repeater {
-                                                model: ["1.0","0.8","0.6","0.4","0.2","0.0"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; height: 22 }
+                                    ChartView {
+                                        width: parent.width; height: parent.height - 24
+                                        antialiasing: true; legend.visible: false
+                                        margins.top: 5; margins.bottom: 5; margins.left: 5; margins.right: 5
+                                        ValueAxis { id: axisXRecv; min: 0; max: 3000; labelFormat: "%.0f"; gridLineColor: "#E0E0E0" }
+                                        ValueAxis { id: axisYRecv; min: -2.0; max: 1000; labelFormat: "%.1f"; gridLineColor: "#E0E0E0" }
+                                        LineSeries { id: recvSeries; axisX: axisXRecv; axisY: axisYRecv; color: "#1565C0"; width: 2 }
+                                        Connections {
+                                            target: backend
+                                            function onWaveformChanged() {
+                                                if (backend) backend.updateRecvSeries(recvSeries)
                                             }
                                         }
-                                        // Horizontal grid lines
-                                        Repeater {
-                                            model: 6
-                                            Rectangle { anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right; height: 1; color: "#E0E0E0"; y: index * 22 }
-                                        }
-                                        // Wave bars — Recv shape: descends then rises
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right
-                                            anchors.bottom: parent.bottom; anchors.top: parent.top; spacing: 0
-                                            Repeater {
-                                                model: [0.50,0.48,0.45,0.40,0.30,0.20,0.16,0.20,0.28,0.35,0.40,0.44,0.46,0.47,0.48,0.49,0.50,0.50]
-                                                Item { width: parent.width/18; height: parent.height
-                                                    Rectangle { width: parent.width; height: parent.height * modelData; anchors.bottom: parent.bottom; color: "#1565C0"; opacity: 0.3 }
-                                                    Rectangle { width: parent.width; height: 2; y: parent.height - parent.height * modelData - 1; color: "#1565C0" }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        width: parent.width; height: 26; color: "#F5F7F8"; border.color: cBorder; border.width: 1
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 30; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
-                                            Repeater {
-                                                model: ["0","256","512","768","1024","1280","1536","1792","2048"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; width: parent.width/9 }
-                                            }
-                                        }
-                                        Text { anchors.right: parent.right; anchors.rightMargin: 4; anchors.bottom: parent.bottom; anchors.bottomMargin: 2; text: "μs"; font.pixelSize: f8; color: cTextLt }
                                     }
                                 }
                             }
@@ -586,43 +705,19 @@ Rectangle {
                                                text: "A / μs"; font.pixelSize: f8; color: "white"; opacity: 0.8 }
                                     }
 
-                                    Rectangle {
-                                        width: parent.width; height: parent.height - 24 - 26; color: "white"
-                                        Column {
-                                            anchors.left: parent.left; anchors.top: parent.top; anchors.leftMargin: 2
-                                            Repeater {
-                                                model: ["1.0","0.8","0.6","0.4","0.2","0.0"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; height: 22 }
+                                    ChartView {
+                                        width: parent.width; height: parent.height - 24
+                                        antialiasing: true; legend.visible: false
+                                        margins.top: 5; margins.bottom: 5; margins.left: 5; margins.right: 5
+                                        ValueAxis { id: axisXSend; min: 0; max: 3000; labelFormat: "%.0f"; gridLineColor: "#E0E0E0" }
+                                        ValueAxis { id: axisYSend; min: -50.0; max: 1000; labelFormat: "%.0f"; gridLineColor: "#E0E0E0" }
+                                        LineSeries { id: sendSeries; axisX: axisXSend; axisY: axisYSend; color: "#2E7D32"; width: 2 }
+                                        Connections {
+                                            target: backend
+                                            function onWaveformChanged() {
+                                                if (backend) backend.updateSendSeries(sendSeries)
                                             }
                                         }
-                                        Repeater {
-                                            model: 6
-                                            Rectangle { anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right; height: 1; color: "#E0E0E0"; y: index * 22 }
-                                        }
-                                        // Wave bars — Send shape: flat top pulse
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right
-                                            anchors.bottom: parent.bottom; anchors.top: parent.top; spacing: 0
-                                            Repeater {
-                                                model: [0.02,0.02,0.05,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.50,0.48,0.10,0.05,0.02,0.02]
-                                                Item { width: parent.width/18; height: parent.height
-                                                    Rectangle { width: parent.width; height: parent.height * modelData; anchors.bottom: parent.bottom; color: "#2E7D32"; opacity: 0.3 }
-                                                    Rectangle { width: parent.width; height: 2; y: parent.height - parent.height * modelData - 1; color: "#2E7D32" }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        width: parent.width; height: 26; color: "#F5F7F8"; border.color: cBorder; border.width: 1
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 30; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
-                                            Repeater {
-                                                model: ["0","256","512","768","1024","1280","1536","1792","2048"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; width: parent.width/9 }
-                                            }
-                                        }
-                                        Text { anchors.right: parent.right; anchors.rightMargin: 4; anchors.bottom: parent.bottom; anchors.bottomMargin: 2; text: "μs"; font.pixelSize: f8; color: cTextLt }
                                     }
                                 }
                             }
@@ -644,43 +739,19 @@ Rectangle {
                                                text: "mV / μs"; font.pixelSize: f8; color: "white"; opacity: 0.8 }
                                     }
 
-                                    Rectangle {
-                                        width: parent.width; height: parent.height - 24 - 26; color: "white"
-                                        Column {
-                                            anchors.left: parent.left; anchors.top: parent.top; anchors.leftMargin: 2
-                                            Repeater {
-                                                model: ["1.0","0.8","0.6","0.4","0.2","0.0"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; height: 22 }
+                                    ChartView {
+                                        width: parent.width; height: parent.height - 24
+                                        antialiasing: true; legend.visible: false
+                                        margins.top: 5; margins.bottom: 5; margins.left: 5; margins.right: 5
+                                        ValueAxis { id: axisXOff; min: 0; max: 3000; labelFormat: "%.0f"; gridLineColor: "#E0E0E0" }
+                                        ValueAxis { id: axisYOff; min: -100.0; max: 1000.0; labelFormat: "%.0f"; gridLineColor: "#E0E0E0" }
+                                        LineSeries { id: offSeries; axisX: axisXOff; axisY: axisYOff; color: "#E65100"; width: 2 }
+                                        Connections {
+                                            target: backend
+                                            function onWaveformChanged() {
+                                                if (backend) backend.updateOffSeries(offSeries)
                                             }
                                         }
-                                        Repeater {
-                                            model: 6
-                                            Rectangle { anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right; height: 1; color: "#E0E0E0"; y: index * 22 }
-                                        }
-                                        // Wave bars — Off shape: exponential decay
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 28; anchors.right: parent.right
-                                            anchors.bottom: parent.bottom; anchors.top: parent.top; spacing: 0
-                                            Repeater {
-                                                model: [0.50,0.35,0.22,0.14,0.10,0.09,0.09,0.10,0.12,0.15,0.18,0.22,0.26,0.30,0.34,0.38,0.42,0.46]
-                                                Item { width: parent.width/18; height: parent.height
-                                                    Rectangle { width: parent.width; height: parent.height * modelData; anchors.bottom: parent.bottom; color: "#E65100"; opacity: 0.3 }
-                                                    Rectangle { width: parent.width; height: 2; y: parent.height - parent.height * modelData - 1; color: "#E65100" }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    Rectangle {
-                                        width: parent.width; height: 26; color: "#F5F7F8"; border.color: cBorder; border.width: 1
-                                        Row {
-                                            anchors.left: parent.left; anchors.leftMargin: 30; anchors.right: parent.right; anchors.verticalCenter: parent.verticalCenter
-                                            Repeater {
-                                                model: ["0","256","512","768","1024","1280","1536","1792","2048"]
-                                                Text { text: modelData; font.pixelSize: f8; color: "#9E9E9E"; font.family: "Consolas"; width: parent.width/9 }
-                                            }
-                                        }
-                                        Text { anchors.right: parent.right; anchors.rightMargin: 4; anchors.bottom: parent.bottom; anchors.bottomMargin: 2; text: "μs"; font.pixelSize: f8; color: cTextLt }
                                     }
                                 }
                             }
@@ -704,12 +775,12 @@ Rectangle {
                                         columns: 2; spacing: 1; width: parent.width
                                         Repeater {
                                             model: [
-                                                { lbl:"电池电压", val:"12.4",  unit:"V",   icon:"🔋", ok:true,  warn:false },
-                                                { lbl:"发射电流", val:"10.02", unit:"A",   icon:"⚡", ok:true,  warn:false },
-                                                { lbl:"内部温度", val:"42.8",  unit:"°C",  icon:"🌡", ok:true,  warn:true  },
-                                                { lbl:"信号强度", val:"-68",   unit:"dBm", icon:"📶", ok:true,  warn:false },
-                                                { lbl:"采样频率", val:"51200", unit:"Hz",  icon:"〜", ok:true,  warn:false },
-                                                { lbl:"数据帧率", val:"16",    unit:"fps", icon:"📊", ok:true,  warn:false }
+                                                { lbl:"电池电压", val: backend ? backend.batteryVoltage.toFixed(1) : "--",  unit:"V",   icon:"🔋", ok:true,  warn: backend && backend.batteryVoltage < 11.5 },
+                                                { lbl:"发射电流", val: backend ? backend.sendCurrent.toFixed(2) : "--", unit:"A",   icon:"⚡", ok:true,  warn: false },
+                                                { lbl:"内部温度", val: backend ? backend.internalTemp.toFixed(1) : "--",  unit:"°C",  icon:"🌡", ok:true,  warn: backend && backend.internalTemp > 45.0 },
+                                                { lbl:"信号强度", val: backend ? (backend.signalStrength * 100).toFixed(0) : "--", unit:"%", icon:"📶", ok:true,  warn: backend && backend.signalStrength < 0.3 },
+                                                { lbl:"采样频率", val: backend ? backend.sampleRate : "--", unit:"Hz",  icon:"〜", ok:true,  warn: false },
+                                                { lbl:"网络状态", val: backend && backend.connectionState===1 ? "已连接" : "已断开", unit:"", icon:"🌐", ok:true,  warn: backend && backend.connectionState!==1 }
                                             ]
                                             Rectangle {
                                                 width: parent.width/2; height: 60
@@ -739,19 +810,32 @@ Rectangle {
                                         width: parent.width
                                         height: parent.height - 24 - 360
                                         color: "#0D1117"
-                                        Column {
-                                            anchors.left: parent.left; anchors.leftMargin: 8; anchors.top: parent.top; anchors.topMargin: 6; spacing: 2
-                                            Text { text: "原始数据流"; font.pixelSize: f9; color: "#58A6FF"; font.bold: true }
-                                            Repeater {
-                                                model: [
-                                                    "13:17:34.221  FRAME#0451  OK  [51200 Sa]",
-                                                    "13:17:34.240  FRAME#0452  OK  [51200 Sa]",
-                                                    "13:17:34.259  FRAME#0453  OK  [51200 Sa]",
-                                                    "13:17:34.278  FRAME#0454  WARN latency 12ms",
-                                                    "13:17:34.297  FRAME#0455  OK  [51200 Sa]",
-                                                    "13:17:34.316  FRAME#0456  OK  [51200 Sa]"
-                                                ]
-                                                Text { text: modelData; font.pixelSize: f8; color: index===3?"#F9A825":"#8B949E"; font.family: "Consolas" }
+                                        clip: true
+                                        
+                                        Text { 
+                                            id: logHeader
+                                            anchors.left: parent.left; anchors.leftMargin: 8; anchors.top: parent.top; anchors.topMargin: 6
+                                            text: "原始数据流"; font.pixelSize: f9; color: "#58A6FF"; font.bold: true 
+                                        }
+
+                                        ListView {
+                                            anchors.top: logHeader.bottom; anchors.topMargin: 6
+                                            anchors.left: parent.left
+                                            anchors.right: parent.right
+                                            anchors.bottom: parent.bottom
+                                            anchors.bottomMargin: 6
+                                            model: backend ? backend.logMessages : []
+                                            clip: true
+                                            spacing: 2
+                                            delegate: Text { 
+                                                x: 8
+                                                width: ListView.view.width - 16
+                                                text: modelData
+                                                font.pixelSize: f8
+                                                font.family: "Consolas"
+                                                textFormat: Text.RichText
+                                                color: "#8B949E"
+                                                wrapMode: Text.WrapAnywhere
                                             }
                                         }
                                     }
@@ -782,6 +866,7 @@ Rectangle {
                                 Rectangle {
                                     width: 148; height: 52; radius: 6; color: backend && backend.isAcquiring ? "#E65100" : cGreen
                                     border.color: "#1B5E20"; border.width: 2
+                                    MouseArea { id: btnAcquireMouseArea; anchors.fill: parent }
                                     Rectangle { anchors.left: parent.left; anchors.right: parent.right; anchors.top: parent.top; anchors.leftMargin: 4; anchors.rightMargin: 4; anchors.topMargin: 3; height: 14; radius: 4; color: "#66BB6A"; opacity: 0.4 }
                                     Column { anchors.centerIn: parent; spacing: 2
                                         Text { text: backend && backend.isAcquiring ? "■  停止采集" : "▶  开始采集"; font.pixelSize: f12; font.bold: true; color: "white"; anchors.horizontalCenter: parent.horizontalCenter }
@@ -791,6 +876,7 @@ Rectangle {
 
                                 Rectangle {
                                     width: 90; height: 52; radius: 5; color: "#CFD8DC"; border.color: "#90A4AE"; border.width: 1
+                                    MouseArea { id: btnStopMouseArea; anchors.fill: parent }
                                     Column { anchors.centerIn: parent; spacing: 2
                                         Text { text: "■  停止"; font.pixelSize: f11; font.bold: true; color: "#455A64"; anchors.horizontalCenter: parent.horizontalCenter }
                                         Text { text: "Stop"; font.pixelSize: f8; color: "#78909C"; anchors.horizontalCenter: parent.horizontalCenter }
@@ -831,7 +917,44 @@ Rectangle {
             Column {
                 anchors.fill: parent; spacing: 0
 
-                // Header
+                // === Device Monitor ===
+                Rectangle {
+                    width: parent.width; height: 36; color: cNavy
+                    Row {
+                        anchors.left: parent.left; anchors.leftMargin: 10; anchors.verticalCenter: parent.verticalCenter; spacing: 6
+                        Text { text: "⚡"; font.pixelSize: f14; color: "#FFD54F" }
+                        Text { text: "设备状态"; font.pixelSize: f11; font.bold: true; color: "white" }
+                    }
+                }
+
+                Rectangle {
+                    width: parent.width; height: 70; color: "#FAFAFA"; border.color: cBorder; border.width: 1
+                    Column {
+                        anchors.fill: parent; anchors.margins: 10; spacing: 8
+                        Row { spacing: 16
+                            Row { spacing: 4; width: 100
+                                Text { text: "电池电压:"; font.pixelSize: f9; color: cTextLt }
+                                Text { text: backend ? backend.batteryVoltage.toFixed(1) + " V" : "-- V"; font.pixelSize: f9; font.bold: true; color: cGreen }
+                            }
+                            Row { spacing: 4
+                                Text { text: "内部温度:"; font.pixelSize: f9; color: cTextLt }
+                                Text { text: backend ? backend.internalTemp.toFixed(1) + " °C" : "-- °C"; font.pixelSize: f9; font.bold: true; color: cOrange }
+                            }
+                        }
+                        Row { spacing: 16
+                            Row { spacing: 4; width: 100
+                                Text { text: "信号强度:"; font.pixelSize: f9; color: cTextLt }
+                                Text { text: backend ? backend.signalStrength.toFixed(0) + " %" : "-- %"; font.pixelSize: f9; font.bold: true; color: cBlue }
+                            }
+                            Row { spacing: 4
+                                Text { text: "连接状态:"; font.pixelSize: f9; color: cTextLt }
+                                Text { text: backend && backend.connectionState===2 ? "正常" : "断开"; font.pixelSize: f9; font.bold: true; color: backend && backend.connectionState===2 ? cGreen : cRed }
+                            }
+                        }
+                    }
+                }
+
+                // === Header Data Judgment ===
                 Rectangle {
                     width: parent.width; height: 36; color: cNavy
                     Row {
@@ -847,8 +970,8 @@ Rectangle {
                     Column {
                         anchors.left: parent.left; anchors.leftMargin: 10; anchors.top: parent.top; anchors.topMargin: 6; spacing: 3
                         Text { text: "当前测点"; font.pixelSize: f9; color: cTextLt }
-                        Text { text: "L01 — P004  (60m)"; font.pixelSize: f11; font.bold: true; color: cOrange }
-                        Text { text: "2026-02-26  13:17:31  |  叠加完成"; font.pixelSize: f8; color: cTextLt; font.family:"Consolas" }
+                        Text { text: backend ? backend.currentPoint : "--"; font.pixelSize: f11; font.bold: true; color: cOrange }
+                        Text { text: backend && backend.progressPercent >= 100 ? "叠加完成" : (backend && backend.isAcquiring ? "采集中..." : "等待采集"); font.pixelSize: f8; color: cTextLt; font.family:"Consolas" }
                     }
                 }
 
@@ -888,16 +1011,18 @@ Rectangle {
                     topPadding: 8; leftPadding: 10; rightPadding: 10
 
                     Row { spacing: 6; width: parent.width - 20
-                        Rectangle { width: (parent.width-6)/2; height: 36; radius: 4; color: "#E8F5E9"; border.color: cAccent; border.width: 2
+                        Rectangle { width: (parent.width-6)/2; height: 36; radius: 4; color: isPointQualified ? "#E8F5E9" : "transparent"; border.color: isPointQualified ? cAccent : cBorder; border.width: 2
+                            MouseArea { anchors.fill: parent; onClicked: isPointQualified = true }
                             Column { anchors.centerIn: parent; spacing: 1
-                                Text { text: "✅  合格"; font.pixelSize: f10; font.bold: true; color: cGreen; anchors.horizontalCenter: parent.horizontalCenter }
-                                Text { text: "Pass"; font.pixelSize: f8; color: "#81C784"; anchors.horizontalCenter: parent.horizontalCenter }
+                                Text { text: "✅  合格"; font.pixelSize: f10; font.bold: true; color: isPointQualified ? cGreen : cTextLt; anchors.horizontalCenter: parent.horizontalCenter }
+                                Text { text: "Pass"; font.pixelSize: f8; color: isPointQualified ? "#81C784" : cTextLt; anchors.horizontalCenter: parent.horizontalCenter }
                             }
                         }
-                        Rectangle { width: (parent.width-6)/2; height: 36; radius: 4; color: cRedLt; border.color: cRed; border.width: 2
+                        Rectangle { width: (parent.width-6)/2; height: 36; radius: 4; color: !isPointQualified ? cRedLt : "transparent"; border.color: !isPointQualified ? cRed : cBorder; border.width: 2
+                            MouseArea { anchors.fill: parent; onClicked: isPointQualified = false }
                             Column { anchors.centerIn: parent; spacing: 1
-                                Text { text: "❌  不合格"; font.pixelSize: f10; font.bold: true; color: cRed; anchors.horizontalCenter: parent.horizontalCenter }
-                                Text { text: "Fail"; font.pixelSize: f8; color: "#EF9A9A"; anchors.horizontalCenter: parent.horizontalCenter }
+                                Text { text: "❌  不合格"; font.pixelSize: f10; font.bold: true; color: !isPointQualified ? cRed : cTextLt; anchors.horizontalCenter: parent.horizontalCenter }
+                                Text { text: "Fail"; font.pixelSize: f8; color: !isPointQualified ? "#EF9A9A" : cTextLt; anchors.horizontalCenter: parent.horizontalCenter }
                             }
                         }
                     }
@@ -918,16 +1043,23 @@ Rectangle {
                     Column { spacing: 3; width: parent.width - 20
                         Text { text: "备注"; font.pixelSize: f9; color: cTextLt }
                         Rectangle { width: parent.width; height: 40; radius: 3; color: "white"; border.color: cBorder; border.width: 1
-                            Text { anchors.left: parent.left; anchors.leftMargin: 6; anchors.top: parent.top; anchors.topMargin: 4; text: "地面干扰较低，波形正常"; font.pixelSize: f9; color: "#9E9E9E" }
+                            TextInput { 
+                                anchors.fill: parent; anchors.margins: 6
+                                text: pointRemarkText; font.pixelSize: f9; color: "#455A64"
+                                onTextChanged: pointRemarkText = text
+                                clip: true
+                            }
                         }
                     }
 
                     // Action buttons
                     Row { spacing: 6; width: parent.width - 20
                         Rectangle { width: (parent.width-12)/3; height: 32; radius: 3; color: cGreen
+                            MouseArea { anchors.fill: parent; onClicked: if(backend) backend.savePointData(isPointQualified, pointRemarkText) }
                             Text { anchors.centerIn: parent; text: "💾 保存"; font.pixelSize: f9; font.bold: true; color: "white" }
                         }
                         Rectangle { width: (parent.width-12)/3; height: 32; radius: 3; color: "#E0E6ED"; border.color: cBorder; border.width: 1
+                            MouseArea { anchors.fill: parent; onClicked: if(backend) backend.skipPoint() }
                             Text { anchors.centerIn: parent; text: "⏭ 跳过"; font.pixelSize: f9; color: cText }
                         }
                         Rectangle { width: (parent.width-12)/3; height: 32; radius: 3; color: "#FFF3E0"; border.color: cOrange; border.width: 1

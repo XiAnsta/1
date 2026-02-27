@@ -17,6 +17,7 @@ TEM_Acquisition_autogen/timestamp: \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/algorithm \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/array \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/atomic \
+	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cassert \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/chrono \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/climits \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cmath \
@@ -25,6 +26,7 @@ TEM_Acquisition_autogen/timestamp: \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstdint \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstdlib \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/cstring \
+	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/filesystem \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/functional \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/initializer_list \
 	C:/Program\ Files/Microsoft\ Visual\ Studio/2022/Community/VC/Tools/MSVC/14.44.35207/include/iterator \
@@ -58,20 +60,44 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/QTproject/BS/Backend.cpp \
 	D:/QTproject/BS/Backend.h \
 	D:/QTproject/BS/CMakeLists.txt \
+	D:/QTproject/BS/DatabaseManager.cpp \
+	D:/QTproject/BS/DatabaseManager.h \
+	D:/QTproject/BS/PlaybackBackend.cpp \
+	D:/QTproject/BS/PlaybackBackend.h \
+	D:/QTproject/BS/TcpClient.cpp \
+	D:/QTproject/BS/TcpClient.h \
 	D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/.qt/qml_imports/TEM_Acquisition_conf.cmake \
 	D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/.qtc/package-manager/auto-setup.cmake \
 	D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
 	D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/3.27.7/CMakeRCCompiler.cmake \
 	D:/QTproject/BS/build/Desktop_Qt_6_10_2_MSVC2022_64bit-Debug/CMakeFiles/3.27.7/CMakeSystem.cmake \
 	D:/QTproject/BS/main.cpp \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QAbstractAxis \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QAbstractSeries \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QChartGlobal \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/QXYSeries \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qabstractaxis.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qabstractseries.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qchartglobal.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qtcharts-config.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qtchartsexports.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCharts/qxyseries.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QFile \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonArray \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonDocument \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QJsonObject \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QList \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QMap \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QObject \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QString \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QTimer \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QVariant \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QVariantList \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QVariantMap \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/QVector \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q17memory.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20functional.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20iterator.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20memory.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20type_traits.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/q20utility.h \
@@ -94,7 +120,11 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearrayalgorithms.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearraylist.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qbytearrayview.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcalendar.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcborcommon.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcborvalue.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qchar.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcheckedint_impl.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcompare.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcompare_impl.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcomparehelpers.h \
@@ -107,10 +137,14 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qcontiguouscache.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdarwinhelpers.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdatastream.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdatetime.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdeadlinetimer.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qdebug.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qendian.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qeventloop.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qexceptionhandling.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfile.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfiledevice.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qflags.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qfloat16.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qforeach.h \
@@ -121,16 +155,26 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qglobalstatic.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qhash.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qhashfunctions.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiodevice.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiodevicebase.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiterable.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qiterator.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonarray.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsondocument.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonobject.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonparseerror.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qjsonvalue.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlatin1stringview.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qline.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlist.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlocale.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qlogging.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmalloc.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmap.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmargins.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmath.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmetacontainer.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmetaobject.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qmetatype.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qminmax.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qnamespace.h \
@@ -141,8 +185,11 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qobjectdefs_impl.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qoverload.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qpair.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qpoint.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qprocessordetection.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qrect.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qrefcount.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qregularexpression.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qscopedpointer.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qscopeguard.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qset.h \
@@ -150,6 +197,8 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qshareddata_impl.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsharedpointer.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsharedpointer_impl.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qsize.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qspan.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstdlibdetection.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstring.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qstringalgorithms.h \
@@ -187,13 +236,51 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtversionchecks.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtypeinfo.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qtypes.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qurl.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qutf8stringview.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/quuid.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvariant.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvariantlist.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvariantmap.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvarlengtharray.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qvector.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qversiontagging.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qxptype_traits.h \
 	D:/Qt/6.10.2/msvc2022_64/include/QtCore/qyieldcpu.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/QBrush \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/QFont \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/QImage \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/QPen \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qbrush.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qcolor.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qfont.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qimage.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpaintdevice.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpen.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpixelformat.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpixmap.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qpolygon.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qregion.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qrgb.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qrgba64.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtgui-config.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtguiexports.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtguiglobal.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qtransform.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qwindowdefs.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtGui/qwindowdefs_win.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/QTcpSocket \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qabstractsocket.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qhostaddress.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtcpsocket.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetwork-config.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetworkexports.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtNetwork/qtnetworkglobal.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtSql/QSqlDatabase \
+	D:/Qt/6.10.2/msvc2022_64/include/QtSql/qsqldatabase.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtSql/qtsql-config.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtSql/qtsqlexports.h \
+	D:/Qt/6.10.2/msvc2022_64/include/QtSql/qtsqlglobal.h \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/FindWrapAtomic.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake \
@@ -239,6 +326,15 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/QtPublicToolHelpers.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsConfigVersion.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsConfigVersionImpl.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsDependencies.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Charts/Qt6ChartsVersionlessAliasTargets.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake \
@@ -424,6 +520,15 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets-relwithdebinfo.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGL/Qt6OpenGLTargets.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGL/Qt6OpenGLVersionlessAliasTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersion.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsVersionlessAliasTargets.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Qml/QmlPlugins/Qt6DataVisualizationQmlpluginAdditionalTargetInfo.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Qml/QmlPlugins/Qt6DataVisualizationQmlpluginConfig.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Qml/QmlPlugins/Qt6DataVisualizationQmlpluginTargets-debug.cmake \
@@ -1085,6 +1190,71 @@ TEM_Acquisition_autogen/timestamp: \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6QuickTools/Qt6QuickToolsTargets-relwithdebinfo.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6QuickTools/Qt6QuickToolsTargets.cmake \
 	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6QuickTools/Qt6QuickToolsVersionlessTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QOCIDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QOCIDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QOCIDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QOCIDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QOCIDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersion.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersionImpl.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlDependencies.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlPlugins.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessAliasTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersionImpl.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsMacros.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsPlugins.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsAdditionalTargetInfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersion.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersionImpl.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsDependencies.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-debug.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
+	D:/Qt/6.10.2/msvc2022_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
 	D:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCXXInformation.cmake \
 	D:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	D:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeCommonLanguageInclude.cmake \

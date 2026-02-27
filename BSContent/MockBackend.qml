@@ -7,10 +7,30 @@ QtObject {
 
     // Properties
     property string targetIp: "192.168.1.100"
-    property bool isConnected: false
+    property int connectionState: 0 // 0: Disconnected, 1: Connecting, 2: Connected
     property bool isAcquiring: false
     property string currentPoint: "P004"
     property int progressPercent: 0
+    
+    // Mock Project Management
+    property string currentProjectName: "Mock Project"
+    property string currentDbPath: "C:/fake/path.sqlite"
+    property var projectTreeModel: []
+
+    // Invokable Methods
+    function createProjectDB(fileUrl) {
+        console.log("Mock create project DB at:", fileUrl)
+        currentDbPath = fileUrl
+        currentProjectName = "New Mock Project"
+        return true
+    }
+
+    function openProjectDB(fileUrl) {
+        console.log("Mock open project DB at:", fileUrl)
+        currentDbPath = fileUrl
+        currentProjectName = "Opened Mock Project"
+        return true
+    }
 
     property real batteryVoltage: 12.4
     property real internalTemp: 42.8
@@ -25,21 +45,26 @@ QtObject {
 
     // Invokable Methods
     function connectDevice() {
-        if (isConnected) {
-            isConnected = false;
-            isAcquiring = false;
-            simTimer.stop();
-            console.log("Disconnected.");
-        } else {
-            isConnected = true;
+        if (connectionState !== 0) return;
+        
+        connectionState = 1;
+        simTimer.startConnecting = Qt.callLater(function() {
+            connectionState = 2;
             batteryVoltage = 12.5;
             internalTemp = 38.0;
             console.log("Connected to " + targetIp);
-        }
+        })
+    }
+
+    function disconnectDevice() {
+        connectionState = 0;
+        isAcquiring = false;
+        simTimer.stop();
+        console.log("Disconnected.");
     }
 
     function startAcquisition() {
-        if (!isConnected) {
+        if (connectionState !== 2) {
             console.warn("Cannot start: Device not connected!");
             return;
         }

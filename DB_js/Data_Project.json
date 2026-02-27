@@ -1,0 +1,22 @@
+[
+    {
+        "CalibrateNo": null,
+        "CreateTime": 1751422906.0,
+        "ID": 1,
+        "LineNoSetp": 0.0,
+        "LineNoStart": 0.0,
+        "NOTE": null,
+        "OffTime": 0.0,
+        "PointLen_D": 0.0,
+        "PointLen_R": 0.0,
+        "PointNoStart": 0.0,
+        "PointNoStep": 2.0,
+        "RecvCoil_Gain": 11.0,
+        "RecvCoil_Size": 15.024,
+        "SSID": "Android",
+        "SendCoil_Len": 0.8862,
+        "SendCoil_Turns": 32.0,
+        "SendCoil_Width": 0.8862,
+        "WorkConfig": 0
+    }
+]
